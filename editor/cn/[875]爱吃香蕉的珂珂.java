@@ -44,6 +44,8 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //二分查找
+    //定义自变量为x(x为题目所求的速度)，f(x)则是吃掉所有香蕉所需要的时间，图像为单调递减
     int f(int[] plies,int x){
         int hours = 0;
         for(int i = 0; i < plies.length; i++) {
@@ -58,10 +60,11 @@ class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int left = 1;
         int right = 1000000000 + 1;
-
+        //注意这里的区间为左闭右开
         while (left < right){
             int mid = left + (right - left)/2;
             if(f(piles,mid) == h){
+                //找最小速度，所以是求左边界，因此收缩右边
                 right = mid;
             }else if(f(piles,mid) < h){
                 right = mid;

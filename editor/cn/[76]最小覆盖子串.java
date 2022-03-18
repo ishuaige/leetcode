@@ -51,22 +51,30 @@ import java.util.HashMap;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //滑动窗口题目
     public String minWindow(String s, String t) {
+        //need记录需要的字符及其数量 window记录窗口中有的字符及其数量
         HashMap<Character,Integer> need = new HashMap<Character, Integer>();
         HashMap<Character,Integer> window = new HashMap<Character, Integer>();
         int left = 0;
         int right = 0;
+        //valid记录符合条件的字符数
         int valid = 0;
         int start = 0;
         int len = Integer.MAX_VALUE;
+
+        //填充need
         for (int i = 0; i < t.length(); i++) {
             char c = t.charAt(i);
             need.put(c,need.getOrDefault(c,0)+1);
         }
 
         while(right<s.length()){
+            //窗口扩大
             char c = s.charAt(right);
             right++;
+
+            //更新扩大后的状态
             if(need.containsKey(c)){
                 window.put(c,window.getOrDefault(c,0)+1);
                 if(window.get(c).equals(need.get(c)) ){
@@ -74,14 +82,18 @@ class Solution {
                 }
             }
 
+            //所有字符满足需要条件
             while(valid == need.size()){
+                //更新len保持最小
                 if(right - left < len){
                     start = left;
                     len = right - left;
                 }
+                //缩小窗口
                 char a = s.charAt(left);
                 left++;
                 if(need.containsKey(a)){
+                    //更新缩小状态
                     if(window.get(a).equals(need.get(a)) ){
                         valid--;
                     }
@@ -89,6 +101,7 @@ class Solution {
                 }
             }
         }
+
         return len==Integer.MAX_VALUE?"":s.substring(start,start+len);
     }
 }

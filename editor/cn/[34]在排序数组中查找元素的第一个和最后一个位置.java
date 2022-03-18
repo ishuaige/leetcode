@@ -43,6 +43,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //二分查找题目
     public int[] searchRange(int[] nums, int target) {
         int left = left_bound(nums,target);
 
@@ -51,23 +52,23 @@ class Solution {
         return new int[]{left,right};
 
     }
-
+    //找左边界
     public int left_bound(int[] nums, int target){
         int left = 0;
         int right = nums.length-1;
+        //左右都闭区间 ===== 最终条件位left > right=nums.length-1 , 所以最后要判断越界
          while(left <= right){
              int mid = left + (right - left)/2;
-
              if(nums[mid] == target){
+                 //找左边界因此相等时让右边界缩小
                  right = mid -1 ;
              }else if(nums[mid] < target){
                  left = mid + 1;
              }else if(nums[mid] > target){
                  right = mid - 1;
              }
-
          }
-
+         //当数组中所有数都比target小时左边界会越界
          if(left >= nums.length || nums[left] != target ){
              return -1;
          }

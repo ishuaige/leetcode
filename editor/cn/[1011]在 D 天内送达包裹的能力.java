@@ -61,6 +61,8 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //滑动窗口
+    //定义函数f(x)，其中x(x为题目所求的最低载重)，f(x)则是所需要的天数，图像成单调递减
     int f(int[] weights,int x){
       int days = 0;
       int sumWeight =0;
@@ -83,7 +85,8 @@ class Solution {
     public int shipWithinDays(int[] weights, int days) {
         int left = 0 ;
         int right = 1;
-
+        //左边界最小为weights中的最大值
+        //右边界最大为所有weight之和
         for (int w : weights) {
             left = Math.max(w,left);
             right += w;

@@ -34,16 +34,19 @@ import java.util.HashMap;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //滑动窗口
     public boolean checkInclusion(String s1, String s2) {
         HashMap<Character,Integer> need = new HashMap<>();
         HashMap<Character,Integer> window = new HashMap<>();
         int left = 0;
         int right = 0;
         int valid = 0;
+
         for (int i = 0; i < s1.length(); i++) {
             char a =s1.charAt(i);
             need.put(a,need.getOrDefault(a,0)+1);
         }
+
         while(right < s2.length()){
             char c = s2.charAt(right);
             right++;

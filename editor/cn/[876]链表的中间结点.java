@@ -45,6 +45,7 @@
  * }
  */
 class Solution {
+    //快慢指针
     public ListNode middleNode(ListNode head) {
         ListNode fast = new ListNode();
         ListNode slow = new ListNode();

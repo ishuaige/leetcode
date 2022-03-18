@@ -55,12 +55,15 @@ import java.util.List;
  * }
  */
 class Solution {
+    //双指针题目
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        //快慢指针
         ListNode fast = new ListNode();
         ListNode slow = new ListNode();
         fast = head;
         slow = head;
         int i = 0;
+        //快指针先走n步后快慢指针一起走，最终慢指针停留在倒数第n个位置
         while(i!=n){
             fast = fast.next;
             i++;

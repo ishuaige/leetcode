@@ -30,6 +30,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //双指针
     public void reverseString(char[] s) {
         int i = 0;
         int j = s.length-1;

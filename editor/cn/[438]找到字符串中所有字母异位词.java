@@ -41,6 +41,7 @@ import java.util.List;
 
 // leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+  //滑动窗口
   public List<Integer> findAnagrams(String s, String p) {
     HashMap<Character, Integer> need = new HashMap<>();
     HashMap<Character, Integer> win = new HashMap<>();
@@ -56,21 +57,23 @@ class Solution {
     }
 
     while (right < s.length()) {
-
+    //扩大窗口
       char c = s.charAt(right);
       right++;
-
+    //更新窗口状态
       if (need.containsKey(c)) {
         win.put(c, win.getOrDefault(c, 0) + 1);
         if (win.get(c).equals(need.get(c))) {
           val++;
         }
       }
-
+    //判断是否缩小，因为找异位词，所以当窗口大于等于p的大小的时候就可以缩小窗口了
       while (right - left >= p.length()) {
         if (val == need.size()) {
+          //将满足条件的左边界加入返回列表
           res.add(left);
         }
+        //缩小窗口并更新窗口状态
         char b = s.charAt(left);
         left++;
         if (need.containsKey(b)) {

@@ -58,6 +58,8 @@
  * = x; next = null; } }
  */
 public class Solution {
+  //快慢指针问题
+  //若链表有环快指针一定会追上慢指针
   public boolean hasCycle(ListNode head) {
     ListNode slow = new ListNode();
     ListNode fast = new ListNode();
@@ -66,7 +68,7 @@ public class Solution {
     while(fast!=null &&fast.next!=null){
       fast = fast.next.next;
       slow = slow.next;
-
+      //快慢指针相遇返回结果
       if(fast == slow){
         return true;
       }

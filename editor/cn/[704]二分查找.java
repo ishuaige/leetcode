@@ -30,6 +30,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //二分查找
     public int search(int[] nums, int target) {
 
         int left = 0;

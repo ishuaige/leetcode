@@ -46,6 +46,7 @@
 
 // leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+  //双指针
   public int[] twoSum(int[] numbers, int target) {
     int i = 0;
     int j = numbers.length - 1;
