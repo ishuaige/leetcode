@@ -1,0 +1,53 @@
+### 题目分析
+
+![rev2ex2.jpeg](https://pic.leetcode-cn.com/1616072102-zdGLZK-rev2ex2.jpeg)
+
+- 给定一个链表 头结点 head
+- 将链表 [left, right] 区间进行反转
+
+> 本题 与「206. 反转链表」类似。
+
+### 解题思路
+
+- `pre`，`left` 的上一个节点 ，[0 -> `pre`]本题是定点 不会根据结点反转变化对于结点的位置
+- `cur` 指向当前要翻转的链表结点
+- `next` cur的下一个结点
+
+> 本题无需定义后继结点
+
+* javascript
+
+```javascript
+var reverseBetween = function(head, left, right) {
+     // 1
+     const dummy_node = new ListNode(-1);
+     dummy_node.next = head;
+
+    // 2
+    let pre = dummy_node;
+    for (let i = 0; i < left - 1; ++i) {
+        pre = pre.next;
+    }
+    //  3
+    let cur = pre.next;
+    for (let i = 0; i < right - left; ++i) {
+         const next = cur.next;
+         cur.next = next.next;
+         next.next = pre.next;
+         pre.next = next;
+     }
+     return dummy_node.next;
+};
+```
+
+1. 定义一个哑点，放在head前 (防止边界换位置问题)
+2. 寻找pre的位置，初始化位置是哑点位置
+3. 将cur的下一个结点插入到pre后面(right - left 次) cur位置每次反转以后会变化
+
+> 时间复杂度$O(N)$
+> 空间复杂度$O(1)$
+
+***
+
+**(*^▽^*)** 祝大家offer多多 欢迎点赞 评论 **!!**
+
