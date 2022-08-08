@@ -59,10 +59,13 @@ class Solution {
         if(root==null){
             return null;
         }
+        //****前序遍历位置*********
+        //交换我的左右节点
         TreeNode tmp = root.left;
         root.left = root.right;
         root.right = tmp;
 
+        //让我的左右节点继续翻转他们的左右节点
         invertTree(root.left);
         invertTree(root.right);
         return root;

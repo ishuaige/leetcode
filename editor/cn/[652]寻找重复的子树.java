@@ -50,40 +50,44 @@ import java.util.List;
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 class Solution {
-    HashMap<String,Integer> map = new HashMap<>();
-    List<TreeNode> res = new ArrayList<TreeNode>() ;
+    HashMap<String, Integer> map = new HashMap<>();
+    List<TreeNode> res = new ArrayList<TreeNode>();
 
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         traverse(root);
         return res;
     }
 
-    String traverse(TreeNode root){
-        if(root==null){
+    String traverse(TreeNode root) {
+        //空节点用 # 表示
+        if (root == null) {
             return "#";
         }
 
         String left = traverse(root.left);
         String right = traverse(root.right);
-        String subTree = left+","+right+","+root.val;
-        int freq=map.getOrDefault(subTree,0);
-        if(freq==1){
+        //序列化
+        String subTree = left + "," + right + "," + root.val;
+        int freq = map.getOrDefault(subTree, 0);
+        //只出现一次，加入结果集
+        if (freq == 1) {
             res.add(root);
         }
-        map.put(subTree,freq+1);
+        //加入子树集并且出现次数加一
+        map.put(subTree, freq + 1);
         return subTree;
 
     }
