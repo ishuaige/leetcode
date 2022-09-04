@@ -61,7 +61,6 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    //滑动窗口
     //定义函数f(x)，其中x(x为题目所求的最低载重)，f(x)则是所需要的天数，图像成单调递减
     int f(int[] weights,int x){
       int days = 0;
